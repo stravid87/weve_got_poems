@@ -1,0 +1,23 @@
+{
+  "name": "we_got_poems",
+  "version": "1.0.0",
+  "description": "Content Server for \"We've Got Poems\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stravid87/weve_got_poems.git"
+  },
+  "author": "stravid87",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/stravid87/weve_got_poems/issues"
+  },
+  "homepage": "https://github.com/stravid87/weve_got_poems#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
