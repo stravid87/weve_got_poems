@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  assetsInclude: ["interceptor.wasm", "wasm_exec.js"],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

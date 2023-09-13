@@ -10,8 +10,14 @@ app.use(express.static("../wgp_frontend/dist"));
 
 // ROUTES
 app.get('/', (req, res) => {
+    console.log("Arrived in '/home'")
     res.sendFile('index.html')
   })
+
+app.get('/route2', (req, res) => {
+  console.log("Arrived in '/route2'")
+  res.send("Response from '/route2'")
+})
 
 // lISTEN
 app.listen(PORT, () => {
