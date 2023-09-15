@@ -3,4 +3,7 @@ go 1.19
 use (
     ./layer8/interceptor
     ./layer8/middleware
+    ./layer8/go-load-balancer
+    ./layer8/proxy_master
+    ./layer8/proxy_slave
 )

@@ -1,5 +1,5 @@
 var express = require('express');
-var path = require('path');
+var cors = require('cors');
 
 // INIT
 const PORT = 8080;
@@ -7,6 +7,7 @@ const app = express();
 
 // MIDDLEWARE
 app.use(express.static("../wgp_frontend/dist"));
+app.use(cors())
 
 // ROUTES
 app.get('/', (req, res) => {

@@ -1,6 +1,17 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+
+console.log("If this equals 3, then WASM is loaded: ", window.addTwoNumbers(1,2))
+
+async function wrapper(){
+  let res = await window.reachOutToBackend()
+  console.log(res)
+}
+
+wrapper()
+
+
 </script>
 
 <template>
@@ -8,7 +19,10 @@ import TheWelcome from './components/TheWelcome.vue'
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="WASM Buttons" />
+      <button > addTwoNumbers </button>
+      <button > reachOutToBackend </button>
+      <button > buttonTheThird </button>
     </div>
   </header>
 
