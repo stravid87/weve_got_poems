@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	Ctl "proxy_slave/api/controller"
@@ -11,8 +12,15 @@ func RegisterRoutes() http.HandlerFunc {
 		// Set up route for API
 		switch r.URL.Path {
 
+		// case "/":
+		// 	fmt.Println("ServeHome...")
+		// 	Ctl.ServeHome(w, r)
+
 		case "/api/v1/ping":
 			Ctl.Ping(w, r)
+
+		case "/api/v1/ping-service-provider":
+			Ctl.PingServiceProvider(w, r)
 
 		case "/api/v1/register-user":
 			Ctl.RegisterUserHandler(w, r)
@@ -29,7 +37,9 @@ func RegisterRoutes() http.HandlerFunc {
 
 		default:
 			// Return a 404 Not Found error for unknown routes
-			http.NotFound(w, r)
+			fmt.Println("ServeHome...")
+			Ctl.ServeHome(w, r)
+			//http.NotFound(w, r)
 		}
 	}
 }

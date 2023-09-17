@@ -2,15 +2,22 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 
-console.log("If this equals 3, then WASM is loaded: ", window.addTwoNumbers(1,2))
-
-async function wrapper(){
-  let res = await window.reachOutToBackend()
-  console.log(res)
+function addTwoNumbersHandler(){
+  let result = window.addTwoNumbers(1, 2)
+  console.log("Two numbers, 1 & 2, added: ", result)
 }
 
-wrapper()
+async function pingSlaveHandler(){
+  console.log("Slave pinged...")
+  let res = await window.pingSlave()
+  console.log("slave's response: ", res)
+}
 
+async function pingServiceProviderHandler(){
+  console.log("Ping Service Provider")
+  let res = await window.pingServiceProvider()
+  console.log("SP's response: ", res)
+}
 
 </script>
 
@@ -20,8 +27,9 @@ wrapper()
 
     <div class="wrapper">
       <HelloWorld msg="WASM Buttons" />
-      <button > addTwoNumbers </button>
-      <button > reachOutToBackend </button>
+      <button @click="addTwoNumbersHandler"> Add 1 & 2 </button>
+      <button @click="pingSlaveHandler"> Ping Slave </button>
+      <button @click="pingServiceProviderHandler"> Ping Service Provider </button>
       <button > buttonTheThird </button>
     </div>
   </header>

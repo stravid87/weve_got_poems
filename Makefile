@@ -12,6 +12,10 @@ run_dev:
 build_interceptor: ## must do from a bash terminal
 	cd layer8/interceptor/ && GOARCH=wasm GOOS=js go build -o ../../service_provider/wgp_frontend/public/interceptor.wasm
 
+build_middleware:
+	cd layer8/middleware/ && GOARCH=wasm GOOS=js go build -o middleware.wasm
+
+
 ### Load Balancer
 build-load-balancer:
 	cd layer8/go-load-balancer/cmd && go build -o ../../bin/load-balancer

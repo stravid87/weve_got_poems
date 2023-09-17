@@ -19,9 +19,14 @@
     (async function(){
       console.log("IIFE Called")
       const go = new Go();
-      await WebAssembly.instantiateStreaming(fetch("interceptor.wasm"), go.importObject).then((result) => {
-        go.run(result.instance);
-      })
+      try{
+        await WebAssembly.instantiateStreaming(fetch("interceptor.wasm"), go.importObject).then((result) => {
+          go.run(result.instance);
+        })
+      } catch (e){
+        console.log(e)
+      }
+      console.log("IIFE Called ")
     })()
     
   </script>

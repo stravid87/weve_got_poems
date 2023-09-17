@@ -37,6 +37,58 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func ServeHome(w http.ResponseWriter, r *http.Request) {
+	port := os.Getenv("SERVICE_PROVIDER_PORT")
+	// Make request to the content server
+	resp, err := http.Get("http://localhost:" + port + "/") // + "/image" + "?id=" + req.Choice)
+	if err != nil {
+		log.Printf("failed to get '/': %v", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Convert the response body to a string
+	RespBodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("failed to read response body: %v", err)
+		return
+	}
+
+	// Send the response back to the WASM module
+	_, err = w.Write(RespBodyBytes)
+	if err != nil {
+		log.Printf("failed to send response: %v", err)
+		return
+	}
+}
+
+// SimpleProxy just sends the request to the backend
+func PingServiceProvider(w http.ResponseWriter, r *http.Request) {
+	port := os.Getenv("SERVICE_PROVIDER_PORT")
+	// Make request to the content server
+	fmt.Println("Pinged?")
+	resp, err := http.Get("http://localhost:" + port + "/api/v1/ping-service-provider") // + "/image" + "?id=" + req.Choice)
+	if err != nil {
+		log.Printf("failed to get /route2: %v", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Convert the response body to a string
+	RespBodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("failed to read response body: %v", err)
+		return
+	}
+
+	// Send the response back to the WASM module
+	_, err = w.Write(RespBodyBytes)
+	if err != nil {
+		log.Printf("failed to send response: %v", err)
+		return
+	}
+}
+
 // RegisterUserHandler handles user registration requests
 func RegisterUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Unmarshal request
